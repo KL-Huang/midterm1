@@ -84,13 +84,13 @@ int main()
         }
 */
     }
-    period = 1/80*value;
+    period = 1.0/80.0*value;
     waittime = 0.08*value*1000000*value;
+    int temp = 240 - int(80.0 * value);
 //        printf("waittime = %f\n" , waittime);
     printf("test\n");
     while(1) {
         for (float j = 0.0; j <= 1.0; j += period) {
-            printf("%f\n", j);
             Aout = j;
             wait_us(waittime);
             if(x < 2*sample) {
@@ -98,7 +98,7 @@ int main()
                 x++;
             }
         }
-        for (;(x % 240) < (240 - 80 * value);) {
+        for (;(x % 240) < temp;) {
             Aout = 1.0;
             wait_us(waittime);
             if(x < 2*sample) {
