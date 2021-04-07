@@ -14,11 +14,11 @@ int main()
     float select[4] = {1/8, 1/4, 1/2, 1};
  //   int freq[3] = {300, 500, 720};
     int now = 0; // current frequency index
-    int flag = 0; // enter the selection mode
+//    int flag = 0; // enter the selection mode
     int flag2 = 0; // enter the confirm mode
     float value = 1/8; // frequency after confirm
-    float period = 1/300;
-    int sample = 100;
+    float period = 0.24;
+    int sample = 240;
     float ADCdata[200];
     int x = 0; // index of sample points
     int stop = 0;
@@ -67,30 +67,36 @@ int main()
         }
 */
     }
-    period = 1.00/value;
-//    switch(now % 3) {
-//        case 0: waittime = period*10000 - 14.6; break;
-//        case 1: waittime = period*10000 - 15.0; break;
-//        case 2: waittime = period*10000 - 14.8; break;
-//        default: waittime = 0;
-//    }
-    waittime = period*10000 - 14.6;
+    period = 1/80*value;
+    waittime = 0.08*value*1000000*value;
 //        printf("waittime = %f\n" , waittime);
     while(1) {
-        for (float j = 1.0f; j >= 0.0f; j -= 0.01f) {
+        for (float j = 0.0; j <= 1.0; j += period) {
             Aout = j;
             wait_us(waittime);
             if(x < 2*sample) {
                 ADCdata[x] = Ain;
                 x++;
             }
-//            else x = 0;
-//            ThisThread::sleep_for(1000ms/sample);
-//        }
-//        for (int i = 0; i < sample; i++){
-//            ThisThread::sleep_for(100ms);
         }
-        if(!stop && x == 200) {
+        if ((x % 240) < (240 - 80 * value)) {
+            Aout = 1.0;
+            wait_us(waittime);
+            if(x < 2*sample) {
+                ADCdata[x] = Ain;
+                x++;
+            }
+        }
+        for (float j = 1.0; j <= 0.0; j -= period) {
+            Aout = j;
+            wait_us(waittime);
+            if(x < 2*sample) {
+                ADCdata[x] = Ain;
+                x++;
+            }
+        }
+
+        if(!stop && x == 2*sample) {
             for (int y = 0; y < 2*sample; y++)
                 printf("%f\r\n", ADCdata[y]);
             stop = 1;
