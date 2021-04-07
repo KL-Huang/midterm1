@@ -14,7 +14,7 @@ int main()
     float select[4] = {1.0/8.0, 1.0/4.0, 1.0/2.0, 1.0};
  //   int freq[3] = {300, 500, 720};
     int now = 0; // current frequency index
-//    int flag = 0; // enter the selection mode
+//    nt flag = 0; // enter the selection mode
     int flag2 = 0; // enter the confirm mode
     float value = 1.0/8.0; // frequency after confirm
     float period = 0.24;
