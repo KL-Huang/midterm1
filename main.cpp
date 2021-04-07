@@ -70,7 +70,7 @@ int main()
             }
             printf("test %d\n", x);
         }
-        while (x % 240 < temp) {
+        for (;x % 240 < temp;) {
             printf("second %d %d\n", x, x%240 < temp);
             Aout = 1.0;
             wait_us(waittime);
@@ -80,8 +80,8 @@ int main()
             }
         }
 //        printf("%d\n", x);
-        for (float j = 1.00; j <= 0.00; j -= period) {
-            printf("enter\n");
+        for (float j = 1.00; j >= 0.00; j -= period) {
+            printf("test\n");
             Aout = j;
             wait_us(waittime);
             if(x < 2*sample) {
