@@ -79,7 +79,7 @@ int main()
                 x++;
             }
         }
-        printf("aaaaaaaaaaaaaaaaaaaaaaaaa\n");
+//        printf("%d\n", x);
         for (float j = 1.00; j <= 0.00; j -= period) {
             printf("enter\n");
             Aout = j;
