@@ -95,7 +95,6 @@ int main()
                 printf("%f\r\n", ADCdata[y]);
             stop = 1;
         }
-//        ThisThread::sleep_for(2s);
     }
 }
 

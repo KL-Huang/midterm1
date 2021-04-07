@@ -10,7 +10,7 @@
 ### (3) what are the program do:
         [1] setup the function of three buttons for up, down and select.
         [2] show the selection of frequency on the uLCD display.
-        [3] use DAC to generate a triangle wave which has maximum = 3, and the peak at x-axis = 0.
+        [3] use DAC to generate a wave which has maximum = 3, and the peak at x-axis = 0.
         [4] read in the wave from ADC, which is done after practical circuit of RC lowpass filter.
         [5] sample the wave from [4] and store in a list.
         [6] use "FFT.py" to read the list from [5].
