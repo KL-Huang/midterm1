@@ -11,12 +11,12 @@ uLCD_4DGL uLCD(D1, D0, D2); // serial tx, serial rx, reset pin;
 
 int main()
 {
-    int freq[3] = {300, 500, 720};
-    int now = 3; // current frequency index
+    float select[4] = {1/8, 1/4, 1/2, 1};
+ //   int freq[3] = {300, 500, 720};
+    int now = 0; // current frequency index
     int flag = 0; // enter the selection mode
     int flag2 = 0; // enter the confirm mode
-    int value = 300; // frequency after confirm
-    float value2 = 0.00;
+    float value = 1/8; // frequency after confirm
     float period = 1/300;
     int sample = 100;
     float ADCdata[200];
@@ -27,31 +27,36 @@ int main()
     up.mode(PullNone);
     down.mode(PullNone);
     confirm.mode(PullNone);
-    uLCD.text_width(2);
+ /*   uLCD.text_width(2);
     uLCD.text_height(2);
     uLCD.color(WHITE);
     uLCD.printf("\n   300\n");
     uLCD.printf("\n   500\n");
     uLCD.printf("\n   720");
-    
+*/
+
     while(!flag2){    
         if(up) {
-            now++; flag = 1;
+            if(now != 3) now++; 
+//            flag = 1;
         }
         else if(down) {
-            now--; 
-            if(now <= 0) now += 3;
-            flag = 1;
+            if(now != 0) now--;
+//            flag = 1;
         }
-        else if (flag & confirm) {
-            value = freq[now % 3];
-            value2 = float(value);
-            printf("%f\r\n", value2);
+        else if (confirm) {
+            uLCD.text_width(2);
+            uLCD.text_height(2);
+            uLCD.color(WHITE);
+            uLCD.printf("\n   %f\n", select[now]);
+            value = select[now];
+//            value2 = float(value);
+            printf("%f\r\n", value);
             flag2 = 1;
-            flag = 0;
+//            flag = 0;
             x = 0;
         }
-        uLCD.locate(0,(now % 3) * 2 + 1);
+/*        uLCD.locate(0,(now % 3) * 2 + 1);
         uLCD.printf("->");
         for (int m = 0; m < 11; m++) {
             for (int n = 0; n < 2; n++) 
@@ -60,6 +65,7 @@ int main()
                     uLCD.printf(" ");
                 }
         }
+*/
     }
     period = 1.00/value;
 //    switch(now % 3) {
