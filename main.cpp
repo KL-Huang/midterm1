@@ -84,7 +84,7 @@ int main()
         }
 */
     }
-    period = 1.0/80.0*value;
+    period = 1.0/(80.0*value);
     waittime = 0.08*value*1000000*value;
     int temp = 240 - int(80.0 * value);
 //        printf("waittime = %f\n" , waittime);
