@@ -88,7 +88,7 @@ int main()
     waittime = 0.08*value*1000000*value;
     int temp = 240 - int(80.0 * value);
 //        printf("waittime = %f\n" , waittime);
-    printf("test\n");
+   printf("%f\n", period);
     while(1) {
         for (float j = 0.0; j <= 1.0; j += period) {
             Aout = j;
@@ -97,8 +97,10 @@ int main()
                 ADCdata[x] = Ain;
                 x++;
             }
+            printf("test %d\n", x);
         }
         for (;(x % 240) < temp;) {
+            printf("%d\n", temp);
             Aout = 1.0;
             wait_us(waittime);
             if(x < 2*sample) {
